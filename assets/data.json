@@ -1,0 +1,89 @@
+{
+    "gardening_items": [
+      {
+        "id": 1,
+        "name": "Grow Lights",
+        "description": "High-quality LED grow lights to help indoor plants thrive with adequate light.",
+        "price": 49.99,
+        "image": "https://media.gettyimages.com/id/1320861654/photo/cannabis-growing-under-led-lights.jpg?s=612x612&w=0&k=20&c=e4Y1a-5nUXHkSx0HEEeRKrqp7o1G9kOYs9v-VFWnKp0="
+      },
+      {
+        "id": 2,
+        "name": "Shade Nets",
+        "description": "Durable shade nets to protect plants from excessive sunlight and heat.",
+        "price": 19.99,
+        "image": "https://www.fmk.co.ke/wp-content/uploads/2019/07/nursery-shade-net.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Weeders",
+        "description": "Ergonomic weeders to remove weeds effectively and maintain your garden.",
+        "price": 12.99,
+        "image": "https://imgs.search.brave.com/wfFHIklPYajTKs99lBBPB35gL-FxB0Knh8KtbOnDVXg/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMtbmEuc3NsLWlt/YWdlcy1hbWF6b24u/Y29tL2ltYWdlcy9J/LzUxbVIxSDZ2SUlT/LmpwZw"
+      },
+      {
+        "id": 4,
+        "name": "Sprinklers",
+        "description": "Adjustable garden sprinklers for efficient watering of lawns and plants.",
+        "price": 24.99,
+        "image": "https://imgs.search.brave.com/_nkT9rAXd7vsC26Obe5j9w03t93VQhbJtdM84anXR6E/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvNjg1/MDA3NTA5L3Bob3Rv/L3N1cmZhY2UtbGV2/ZWwtdmlldy1vZi1i/YWNreWFyZC1zcHJp/bmtsZXItc3ByYXlp/bmcuanBnP3M9NjEy/eDYxMiZ3PTAmaz0y/MCZjPVpuTzkwalhW/ZEJIRENaWXN5OXNt/RGZvUVVhOG5pa1J5/WURrdWpWaHA4Nlk9"
+      },
+      {
+        "id": 5,
+        "name": "Fertilizers",
+        "description": "Organic and synthetic fertilizers to boost plant growth and productivity.",
+        "price": 14.99,
+        "image": "https://imgs.search.brave.com/pbFVMXAXKy7OYLi6xHImmT_80od2L2Z37J7FePBbwD0/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA0LzIyLzQzLzkz/LzM2MF9GXzQyMjQz/OTM4OF8zY3l3TkZ0/d0cwbmpBejdhRjNO/WjFBRm81MklDcDli/ai5qcGc"
+      },
+      {
+        "id": 6,
+        "name": "Watering Cans",
+        "description": "Stylish and durable watering cans for convenient plant watering.",
+        "price": 9.99,
+        "image": "https://imgs.search.brave.com/u3h5tXmwGL7madoEbq3iIfy2nz0ohnmFPdBMqVhZk9Y/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cmVhbHNpbXBsZS5j/b20vdGhtYi9zbXA1/VW9EdmE4RWRNd0V1/eERUalptOFhxaUU9/L2ZpdC1pbi8xNTAw/eDEwMDAvZmlsdGVy/czpub191cHNjYWxl/KCk6bWF4X2J5dGVz/KDE1MDAwMCk6c3Ry/aXBfaWNjKCkvZmFz/bW92LTEtZ2FsbG9u/LXBsYXN0aWMtd2F0/ZXJpbmctY2FuLXdp/dGgtY29tZm9ydGFi/bGUtaGFuZGxlLWdh/cmRlbi13YXRlcmlu/Zy1jYW5zLWxvbmct/c3BvdXQtZm9yLWlu/ZG9vci1vdXRkb29y/LXdhdGVyaW5nLXBs/YW50cy1ibHVlLTI4/MzZiNTJmODI2YzQ0/YWE4YTdmZTJiYzg4/NDcyYWNhLmpwZw"
+      },
+      {
+        "id": 7,
+        "name": "Planters and Pots",
+        "description": "Decorative and functional planters and pots for all types of plants.",
+        "price": 15.99,
+        "image": "https://imgs.search.brave.com/K7pvr155MWMP42QdnYr7Bp1KSlNUMS_DllNsfuan14I/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzFtMG5DQVkzLUwu/anBn"
+      },
+      {
+        "id": 8,
+        "name": "Pest Control Tools",
+        "description": "Effective tools and sprays to protect your garden from pests and insects.",
+        "price": 18.99,
+        "image": "https://imgs.search.brave.com/qDWhvN7ZAYbNw4iCeYzVbC0uA5WlfLZ2Cex2eTx_kNo/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y3JpdHRlcmd1YXJk/Lm9yZy9jZG4vc2hv/cC9hcnRpY2xlcy85/LWVzc2VudGlhbC10/b29scy1mb3IteW91/ci1wZXN0LWNvbnRy/b2wtY29tcGFueS5q/cGc_dj0xNjAyMTcx/ODkx"
+      },
+      {
+        "id": 9,
+        "name": "Mulch",
+        "description": "Organic mulch to retain moisture in the soil and prevent weed growth.",
+        "price": 8.99,
+        "image": "https://images.immediate.co.uk/production/volatile/sites/10/2018/02/1e45686a-1d13-4978-b3d4-329ebf3476d9-e015385.jpg?quality=90&fit=700,466"
+      },
+      {
+        "id": 10,
+        "name": "Garden Gloves",
+        "description": "Comfortable and protective gloves for handling soil and plants.",
+        "price": 6.99,
+        "image": "https://imgs.search.brave.com/Ys9oRWxpwTp0IWotxTy0RNgFkNXzWt2v8FnedMA1uxk/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTc2/NzkwMzExL3Bob3Rv/L2dhcmRlbi1nbG92/ZXMtZ3JlZW4uanBn/P3M9NjEyeDYxMiZ3/PTAmaz0yMCZjPWFY/eEYtcVBuOHVEX1dX/amhlVW5mWUZhaGl5/alM4aS1YYk5zN1dV/TlJBTzQ9"
+      },
+      {
+        "id": 11,
+        "name": "Compost",
+        "description": "Rich organic compost to improve soil fertility and promote healthy plants.",
+        "price": 10.99,
+        "image": "https://imgs.search.brave.com/-JSX37ftcp8ugq-RW0KMnGIdXyPN_NO8mpHXWI915fY/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTI1/MzQ5NjgzMS9waG90/by9tYW4tc2hvd2lu/Zy1jb21wb3N0Lmpw/Zz9zPTYxMng2MTIm/dz0wJms9MjAmYz1Z/aFBQSVRLRTZBczlQ/MVdxbkJKZVpNVjY2/OHR1eW5zZjFvTGFr/YlNaWkJNPQ"
+      },
+      {
+        "id": 12,
+        "name": "Rake",
+        "description": "A sturdy rake for leveling soil, spreading mulch, and clearing debris.",
+        "price": 13.99,
+        "image": "https://imgs.search.brave.com/m-RKc2a2Vp37Nca0SW1_1mcuulT7t0HiVhjgHtcobv4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTcw/MjE1ODU3L3Bob3Rv/L3Jha2UtbGVhdmVz/LW9uLWdyYXNzLWlu/LWdhcmRlbi5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9MTU3/OVNrM2NqQzI2Nk5L/bUVPaVRFc0tZa2Vj/RkFFSjBtc1o3OVpW/bElpdz0"
+      }
+    ]
+  }
+  

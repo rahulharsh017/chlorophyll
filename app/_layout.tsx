@@ -1,39 +1,61 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import React from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Drawer } from 'expo-router/drawer';
+import { StyleSheet } from 'react-native';
+import { Provider } from 'react-redux';
+import { store } from '@/store/store';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
+export default function DrawerLayout() {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <GestureHandlerRootView style={styles.container}>
+        <Provider store={store}>
+      <Drawer // Apply custom styles to the drawer
+      >
+        <Drawer.Screen
+          name="index"
+          options={{
+            title: 'Home',
+            headerStyle: { backgroundColor: '#53E540' }, // Set the header background color
+            headerTintColor: 'white', // Set the header text color
+          }}
+        />
+        <Drawer.Screen
+          name="BlogScreen"
+          options={{
+            title: 'Blog',
+            headerStyle: { backgroundColor: '#53E540' },
+            headerTintColor: 'white',
+          }}
+        />
+        <Drawer.Screen
+          name="ShopScreen"
+          options={{
+            title: 'Shop',
+            headerStyle: { backgroundColor: '#53E540' },
+            headerTintColor: 'white',
+          }}
+        />
+         <Drawer.Screen
+          name="CartScreen"
+          options={{
+            title: 'Cart',
+            headerStyle: { backgroundColor: '#53E540' },
+            headerTintColor: 'white',
+          }}
+        />
+      </Drawer>
+      </Provider>
+    </GestureHandlerRootView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#24FF07', // Set the background color of the drawer layout
+  },
+  drawer: {
+    backgroundColor: '#24FF07', // Set the background color of the drawer (slider)
+    width: '80%', // You can adjust the width of the drawer if needed
+  },
+});
