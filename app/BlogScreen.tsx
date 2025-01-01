@@ -9,7 +9,6 @@ const BlogScreen = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* Blog 1 */}
       <View style={styles.blogCard}>
         <Text style={styles.blogTitle}>The Peace Lily: NASA's Little Air-Purifying Superstar</Text>
         <Text style={styles.blogContent}>
@@ -31,7 +30,6 @@ const BlogScreen = () => {
         </View>
       </View>
 
-      {/* Blog 2 */}
       <View style={styles.blogCard}>
         <Text style={styles.blogTitle}>The Mighty Tulsi Plant: Unveiling Its Healing Powers and Growing Tips</Text>
         <Text style={styles.blogContent}>
