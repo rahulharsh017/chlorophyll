@@ -1,11 +1,15 @@
-
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Linking } from 'react-native';
 
 const BlogScreen = () => {
+  // Function to handle opening URLs
+  const handleReadMore = (url: string) => {
+    Linking.openURL(url);
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
-
+      {/* Blog 1 */}
       <View style={styles.blogCard}>
         <Text style={styles.blogTitle}>The Peace Lily: NASA's Little Air-Purifying Superstar</Text>
         <Text style={styles.blogContent}>
@@ -14,19 +18,34 @@ const BlogScreen = () => {
           Let's talk about NASA, folks. We've all seen those awe-inspiring space missions and the brilliant minds behind them. Well, it turns out they are not just great at sending rockets into space; they are also excellent at keeping the air clean up there.
         </Text>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() =>
+              handleReadMore(
+                'https://nurserylive.com/blogs/top-10-plants/the-peace-lily-nasas-little-air-purifying-superstar-dyoe-dys'
+              )
+            }
+          >
             <Text style={styles.buttonText}>Read More</Text>
           </TouchableOpacity>
         </View>
       </View>
 
+      {/* Blog 2 */}
       <View style={styles.blogCard}>
         <Text style={styles.blogTitle}>The Mighty Tulsi Plant: Unveiling Its Healing Powers and Growing Tips</Text>
         <Text style={styles.blogContent}>
           In a world dominated by modern medicine, the incredible healing properties of ancient herbs often go unnoticed. However, one herb that deserves the spotlight is the sacred tulsi plant. Join us as we delve into the fascinating world of tulsi plants, exploring their health benefits and sharing valuable tips on growing and caring for these miraculous plants.
         </Text>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() =>
+              handleReadMore(
+                'https://nurserylive.com/blogs/top-10-plants/the-mighty-tulsi-plant-unveiling-its-healing-powers-and-growing-tips'
+              )
+            }
+          >
             <Text style={styles.buttonText}>Read More</Text>
           </TouchableOpacity>
         </View>

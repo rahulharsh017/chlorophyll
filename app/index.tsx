@@ -5,6 +5,7 @@ interface PlantData {
   Temperature: number;
   Humidity: number;
   Moisture: number;
+  PumpStatus: string;
 }
 
 const HomeScreen: React.FC = () => {
@@ -52,6 +53,12 @@ const HomeScreen: React.FC = () => {
             <Text style={styles.infoText}>Moisture:</Text>
             <Text style={styles.infoText}>
               {plantData ? `${plantData.Moisture} Hydrated` : 'Loading...'}
+            </Text>
+          </View>
+          <View style={styles.infoBox}>
+            <Text style={styles.infoText}>PumpStatus:</Text>
+            <Text style={styles.infoText}>
+              {plantData ? `${plantData.PumpStatus}` : 'Loading...'}
             </Text>
           </View>
         </View>
