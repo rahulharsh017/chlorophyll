@@ -2,20 +2,31 @@ import React from 'react';
 import { View, Text, Image, Button, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItems, updateItems, emptyCart } from '../store/slice/cartSlice';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-const CartPage: React.FC = () => {
+// ...existing code...
+
+type CartPageProps = {
+  navigation: NativeStackNavigationProp<any>;
+};
+const CartPage: React.FC<CartPageProps> = ({ navigation }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: any) => state.cart.value);
 
   const handleUpdateQuantity = (id: number, quantity: number) => {
     dispatch(updateItems({ id, quantity }));
   };
+
   const handleRemoveItem = (id: number) => {
     dispatch(removeItems({ id }));
   };
 
   const handleEmptyCart = () => {
     dispatch(emptyCart());
+  };
+
+  const handleBuyNow = () => {
+    navigation.navigate('PaymentsScreen');
   };
 
   const renderItem = ({ item }: { item: any }) => (
@@ -60,6 +71,12 @@ const CartPage: React.FC = () => {
           Total: ${cartItems.reduce((total : number, item:any) => total + item.price * item.quantity, 0).toFixed(2)}
         </Text>
       </View>
+      <TouchableOpacity 
+        style={styles.buyNowButton}
+        onPress={handleBuyNow}
+      >
+        <Text style={styles.buyNowText}>Buy Now</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -151,6 +168,18 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   totalText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  buyNowButton: {
+    backgroundColor: '#53E540',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    margin: 20,
+  },
+  buyNowText: {
+    color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
   },

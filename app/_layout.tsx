@@ -43,6 +43,15 @@ export default function DrawerLayout() {
             headerTintColor: 'white',
           }}
         />
+        <Drawer.Screen
+          name="PaymentsScreen"
+          options={{
+            title: 'Payments',
+            headerStyle: { backgroundColor: '#53E540' },
+            headerTintColor: 'white',
+            drawerItemStyle: { height: 0 }
+          }}
+        />
       </Drawer>
       </Provider>
     </GestureHandlerRootView>
