@@ -1,20 +1,52 @@
-import React from 'react';
-import { View, Text, Image, Button, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { removeItems, updateItems, emptyCart } from '../store/slice/cartSlice';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import React from "react";
+import {
+  View,
+  Text,
+  Image,
+  Button,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { removeItems, updateItems, emptyCart } from "../store/slice/cartSlice";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
+import { useNavigation } from "@react-navigation/native";
 
-// ...existing code...
-
-type CartPageProps = {
-  navigation: NativeStackNavigationProp<any>;
+// Define Drawer Navigator Types
+type DrawerParamList = {
+  CartPage: undefined;
+  PaymentsScreen: undefined;
 };
-const CartPage: React.FC<CartPageProps> = ({ navigation }) => {
+
+// Define Navigation Prop
+type NavigationProp = DrawerNavigationProp<DrawerParamList, "CartPage">;
+
+interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  image: string;
+}
+
+interface RootState {
+  cart: {
+    value: CartItem[];
+  };
+}
+
+const CartPage: React.FC = () => {
   const dispatch = useDispatch();
-  const cartItems = useSelector((state: any) => state.cart.value);
+  const cartItems = useSelector((state: RootState) => state.cart.value);
+
+  // Get navigation object
+  const navigation = useNavigation<NavigationProp>();
 
   const handleUpdateQuantity = (id: number, quantity: number) => {
-    dispatch(updateItems({ id, quantity }));
+    if (quantity >= 0) {
+      dispatch(updateItems({ id, quantity }));
+    }
   };
 
   const handleRemoveItem = (id: number) => {
@@ -26,57 +58,69 @@ const CartPage: React.FC<CartPageProps> = ({ navigation }) => {
   };
 
   const handleBuyNow = () => {
-    navigation.navigate('PaymentsScreen');
+    // Navigate to PaymentsScreen
+    navigation.navigate("PaymentsScreen");
   };
 
-  const renderItem = ({ item }: { item: any }) => (
-    <View style={styles.itemContainer}>
+  const renderItem = ({ item }: { item: CartItem }) => (
+    <View style={styles.cartItem}>
+      <Image source={{ uri: item.image }} style={styles.itemImage} />
       <View style={styles.itemDetails}>
-        <Image source={{ uri: item.image }} style={styles.itemImage} />
-        <View style={styles.itemText}>
-          <Text style={styles.itemName}>{item.name}</Text>
-          <Text style={styles.itemDescription}>{item.description}</Text>
+        <Text style={styles.itemName}>{item.name}</Text>
+        <Text style={styles.itemPrice}>${item.price}</Text>
+        <View style={styles.quantityContainer}>
+          <TouchableOpacity
+            onPress={() => handleUpdateQuantity(item.id, item.quantity - 1)}
+          >
+            <Text style={styles.quantityButton}>-</Text>
+          </TouchableOpacity>
+          <Text style={styles.quantity}>{item.quantity}</Text>
+          <TouchableOpacity
+            onPress={() => handleUpdateQuantity(item.id, item.quantity + 1)}
+          >
+            <Text style={styles.quantityButton}>+</Text>
+          </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.itemActions}>
-        <View style={styles.quantityControl}>
-          <Button title="-" onPress={() => handleUpdateQuantity(item.id, item.quantity - 1)} />
-          <Text style={styles.quantityText}>{item.quantity}</Text>
-          <Button title="+" onPress={() => handleUpdateQuantity(item.id, item.quantity + 1)} />
-        </View>
-        <Text style={styles.itemPrice}>${(item.price * item.quantity).toFixed(2)}</Text>
-        <TouchableOpacity style={styles.removeButton} onPress={() => handleRemoveItem(item.id)}>
-          <Text style={styles.removeButtonText}>Remove</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        onPress={() => handleRemoveItem(item.id)}
+        style={styles.removeButton}
+      >
+        <Text style={styles.removeButtonText}>Remove</Text>
+      </TouchableOpacity>
     </View>
   );
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Your Cart</Text>
       {cartItems.length === 0 ? (
         <Text style={styles.emptyCartText}>Your cart is empty.</Text>
       ) : (
-        <FlatList
-          data={cartItems}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          contentContainerStyle={styles.listContent}
-        />
+        <>
+          <FlatList
+            data={cartItems}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id.toString()}
+            contentContainerStyle={styles.listContent}
+          />
+          <Button
+            title="Empty Cart"
+            onPress={handleEmptyCart}
+            color="#ff4444"
+          />
+        </>
       )}
       <View style={styles.footer}>
-        <Button title="Empty Cart" onPress={handleEmptyCart} />
         <Text style={styles.totalText}>
-          Total: ${cartItems.reduce((total : number, item:any) => total + item.price * item.quantity, 0).toFixed(2)}
+          Total: $
+          {cartItems
+            .reduce((total, item) => total + item.price * item.quantity, 0)
+            .toFixed(2)}
         </Text>
+        <TouchableOpacity style={styles.buyNowButton} onPress={handleBuyNow}>
+          <Text style={styles.buyNowText}>Buy Now</Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity 
-        style={styles.buyNowButton}
-        onPress={handleBuyNow}
-      >
-        <Text style={styles.buyNowText}>Buy Now</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -84,104 +128,85 @@ const CartPage: React.FC<CartPageProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f8f8',
-    padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#38a169',
-    marginBottom: 16,
-  },
-  emptyCartText: {
-    textAlign: 'center',
-    color: '#718096',
+    backgroundColor: "#fff",
   },
   listContent: {
-    paddingBottom: 16,
-  },
-  itemContainer: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#fff',
     padding: 16,
-    marginBottom: 8,
-    borderRadius: 8,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
-    height:250
   },
-  itemDetails: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  cartItem: {
+    flexDirection: "row",
+    padding: 10,
+    marginBottom: 10,
+    backgroundColor: "#f8f8f8",
+    borderRadius: 8,
+    alignItems: "center",
   },
   itemImage: {
-    width: 60,
-    height: 60,
+    width: 80,
+    height: 80,
     borderRadius: 8,
   },
-  itemText: {
-    marginLeft: 12,
-    flexShrink: 1, // Allow text to shrink to prevent overflow
+  itemDetails: {
+    flex: 1,
+    marginLeft: 10,
   },
   itemName: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#2d3748',
-  },
-  itemDescription: {
-    fontSize: 12,
-    color: '#718096',
-  },
-  itemActions: {
-    alignItems: 'center',
-  },
-  quantityControl: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  quantityText: {
-    marginHorizontal: 8,
+    fontWeight: "bold",
   },
   itemPrice: {
-    fontWeight: 'bold',
-    color: '#38a169',
-    marginVertical: 8,
+    fontSize: 14,
+    color: "#666",
+  },
+  quantityContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 5,
+  },
+  quantityButton: {
+    fontSize: 20,
+    paddingHorizontal: 10,
+    color: "#53E540",
+  },
+  quantity: {
+    fontSize: 16,
+    paddingHorizontal: 10,
   },
   removeButton: {
-    backgroundColor: '#e53e3e',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 8,
+    padding: 8,
   },
   removeButtonText: {
-    color: 'white',
+    color: "#ff4444",
+  },
+  emptyCartText: {
+    textAlign: "center",
+    fontSize: 18,
+    marginTop: 20,
   },
   footer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 16,
+    padding: 16,
+    borderTopWidth: 1,
+    borderTopColor: "#e0e0e0",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  buyNowButton: {
+    backgroundColor: "#53E540",
+    padding: 15,
+    borderRadius: 10,
+    alignItems: "center",
+    width: "100%",
+    marginTop: 10,
+  },
+  buyNowText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
   },
   totalText: {
     fontSize: 18,
-    fontWeight: 'bold',
-  },
-  buyNowButton: {
-    backgroundColor: '#53E540',
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-    margin: 20,
-  },
-  buyNowText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
+    marginBottom: 10,
   },
 });
 
