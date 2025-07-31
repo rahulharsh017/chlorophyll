@@ -52,6 +52,14 @@ export default function DrawerLayout() {
             drawerItemStyle: { height: 0 }
           }}
         />
+        <Drawer.Screen
+          name="TulsiScreen"
+          options={{
+            title: 'Tulsi',
+            headerStyle: { backgroundColor: '#53E540' },
+            headerTintColor: 'white',
+          }}
+        />
       </Drawer>
       </Provider>
     </GestureHandlerRootView>
