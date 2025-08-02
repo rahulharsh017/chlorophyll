@@ -52,8 +52,8 @@ const HomeScreen: React.FC = () => {
           <View style={styles.infoBox}>
             <Text style={styles.infoText}>Moisture:</Text>
             <Text style={styles.infoText}>
-              {plantData ? `${plantData.Moisture} Hydrated` : 'Loading...'}
-            </Text>
+              {plantData ? `${plantData.Moisture}` : 'Loading...'}
+            </Text>y
           </View>
           <View style={styles.infoBox}>
             <Text style={styles.infoText}>PumpStatus:</Text>
